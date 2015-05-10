@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap 3, from LayoutIt!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+    <!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+    <!--script src="js/less-1.3.3.min.js"></script-->
+    <!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- Fav and touch icons -->
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="piano.css">
+  </head>
+  <body>
+    <script src="main.js"></script>
+    <div class="container">
+      <div class="row clearfix ">
+        <div class="col-md-4 column">
+          <h3>
+            Oscillators
+          </h3>
+        </div>
+        <div class="col-md-4 column">
+          <h3>
+            Envelope
+          </h3>
+        </div>
+        <div class="col-md-4 column">
+          <h3>
+            Filter
+          </h3>
+        </div>
+      </div>
+      <div class="row clearfix top controlrow">
+        <div class="col-md-4 column">
+          <label for=master>Master Volume</label>
+<input type=range id=master min=0 value=0.25 max=0.5 step=0.01>
+        </div>
+        <div class="col-md-4 column">
+          <input type="checkbox" id="envLock" value="0">
+<label for="envLock">Envelope Lock</label>
+        </div>
+        <div class="col-md-4 column">
+          <input type="checkbox" id="filterLock" value="0">
+<label for="filterLock">Envelope Lock</label>
+        </div>
+      </div>
+      <div class="row clearfix controlrow">
+        <div class="col-md-4 column">
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for=osc_1>Volume</label>
+            </div>
+            <div class="col-md-9 column"><input type=range id=osc_1 min=0 value=0.5 max=1 step=0.01>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for=osc_1_type>Type</label>
+            </div>
+            <div class="col-md-9 column">
+              <select id=osc_1_type>
+                <option value="sine">Sine</option>
+                <option value="square">Square</option>
+                <option value="sawtooth">Sawtooth</option>
+                <option value="triangle">Triangle</option>
+              </select>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for=osc_1_detune>Detune</label>
+            </div>
+            <div class="col-md-9 column"><input type=range id=osc_1_detune min=-10 value=0 max=10 step=0.1>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 column">
+          <div class="row clearfix">
+            <div class="col-md-2 column"><label for=env_1_attack>Attack</label>
+            </div>
+            <div class="col-md-10 column"><input type=range id=env_1_attack min=1 value=10 max=5000 step=0.1>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-2 column"><label for=env_1_decay>Decay</label>
+            </div>
+            <div class="col-md-10 column"><input type=range id=env_1_decay min=1 value=10 max=1000 step=0.01>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-2 column"><label for=env_1_sustain>Sustain</label>
+            </div>
+            <div class="col-md-10 column"><input type=range id=env_1_sustain min=0.01 value=0.5 max=1 step=0.01>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-2 column"><label for=env_1_release>Release</label>
+            </div>
+            <div class="col-md-10 column"><input type=range id=env_1_release min=1 value=100 max=10000 step=1>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 column">
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for='filter_1_cutoff'>Cutoff</label>
+            </div>
+            <div class="col-md-9 column"><input type=range id=filter_1_cutoff min=1 value=500 max=10000 step=1>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for='filter_1_res'>Resonance</label>
+            </div>
+            <div class="col-md-9 column"><input type=range id=filter_1_res min=0.01 value=1 max=1000 step=0.5>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for='filter_1_filtertype'>Type</label>
+            </div>
+            <div class="col-md-9 column">
+              <select id=filter_1_filtertype>
+                <option value="lowpass">Lowpass</option>
+                <option value="highpass">Highpass</option>
+                <option value="bandpass">Bandpass</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix controlrow">
+        <div class="col-md-4 column">
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for=osc_2>Volume</label>
+            </div>
+            <div class="col-md-9 column"><input type=range id=osc_2 min=0 value=0.5 max=1 step=0.01>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for=osc_2_type>Type</label>
+            </div>
+            <div class="col-md-9 column">
+              <select id=osc_2_type>
+                <option value="sine">Sine</option>
+                <option value="square">Square</option>
+                <option value="sawtooth">Sawtooth</option>
+                <option value="triangle">Triangle</option>
+              </select>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for=osc_2_detune>Detune</label>
+            </div>
+            <div class="col-md-9 column"><input type=range id=osc_2_detune min=-10 value=0 max=10 step=0.1>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 column">
+          <div class="row clearfix">
+            <div class="col-md-2 column"><label for=env_2_attack>Attack</label>
+            </div>
+            <div class="col-md-10 column"><input type=range id=env_2_attack min=1 value=10 max=5000 step=0.1>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-2 column"><label for=env_2_decay>Decay</label>
+            </div>
+            <div class="col-md-10 column"><input type=range id=env_2_decay min=1 value=10 max=1000 step=0.01>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-2 column"><label for=env_2_sustain>Sustain</label>
+            </div>
+            <div class="col-md-10 column"><input type=range id=env_2_sustain min=0.01 value=0.5 max=1 step=0.01>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-2 column"><label for=env_2_release>Release</label>
+            </div>
+            <div class="col-md-10 column"><input type=range id=env_2_release min=1 value=100 max=10000 step=1>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 column">
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for='filter_2_cutoff'>Cutoff</label>
+            </div>
+            <div class="col-md-9 column"><input type=range id=filter_2_cutoff min=1 value=500 max=2000 step=1>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for='filter_2_res'>Resonance</label>
+            </div>
+            <div class="col-md-9 column"><input type=range id=filter_2_res min=0.01 value=1 max=1000 step=0.5>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for='filter_2_filtertype'>Type</label>
+            </div>
+            <div class="col-md-9 column">
+              <select id=filter_2_filtertype>
+                <option value="lowpass">Lowpass</option>
+                <option value="highpass">Highpass</option>
+                <option value="bandpass">Bandpass</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix controlrow ">
+        <div class="col-md-4 column">
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for=osc_3>Volume</label>
+            </div>
+            <div class="col-md-9 column"><input type=range id=osc_3 min=0 value=0.5 max=1 step=0.01>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for=osc_3_type>Type</label>
+            </div>
+            <div class="col-md-9 column">
+              <select id=osc_3_type>
+                <option value="sine">Sine</option>
+                <option value="square">Square</option>
+                <option value="sawtooth">Sawtooth</option>
+                <option value="triangle">Triangle</option>
+              </select>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for=osc_3_detune>Detune</label>
+            </div>
+            <div class="col-md-9 column"><input type=range id=osc_3_detune min=-10 value=0 max=10 step=0.1>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 column">
+          <div class="row clearfix">
+            <div class="col-md-2 column"><label for=env_3_attack>Attack</label>
+            </div>
+            <div class="col-md-10 column"><input type=range id=env_3_attack min=1 value=10 max=5000 step=0.1>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-2 column"><label for=env_3_decay>Decay</label>
+            </div>
+            <div class="col-md-10 column"><input type=range id=env_3_decay min=1 value=10 max=1000 step=0.01>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-2 column"><label for=env_3_sustain>Sustain</label>
+            </div>
+            <div class="col-md-10 column"><input type=range id=env_3_sustain min=0.01 value=0.5 max=1 step=0.01>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-2 column"><label for=env_3_release>Release</label>
+            </div>
+            <div class="col-md-10 column"><input type=range id=env_3_release min=1 value=100 max=10000 step=1>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 column">
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for='filter_3_cutoff'>Cutoff</label>
+            </div>
+            <div class="col-md-9 column"><input type=range id=filter_3_cutoff min=1 value=500 max=2000 step=1>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for='filter_3_res'>Resonance</label>
+            </div>
+            <div class="col-md-9 column"><input type=range id=filter_3_res min=0.01 value=1 max=1000 step=0.5>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-3 column"><label for='filter_3_filtertype'>Type</label>
+            </div>
+            <div class="col-md-9 column">
+              <select id=filter_3_filtertype>
+                <option value="lowpass">Lowpass</option>
+                <option value="highpass">Highpass</option>
+                <option value="bandpass">Bandpass</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix controlrow bottom">
+        <div class="col-md-1 column"><label for='octave'>Octave</label><select id=octave onchange="initKeys(+this.value)">
+                <option value="2">+2</option>
+                <option value="1">+1</option>
+                <option value="0" selected="selected">0</option>
+              <option value="-1">-1</option>
+                <option value="-2">-2</option>
+              </select>
+            </div>
+        <div class="col-md-11 column">
+           <div id="piano">
+        <div class="keys" id="keys">
+          <div class="key" data-key="-12">
+            <h3 class='keyboard white'>A</h3>
+          </div>
+          <div class="key black black1" data-key="-11"></div>
+          <div class="key" data-key="-10">
+            <h3 class='keyboard white'>S</h3>
+          </div>
+          <div class="key black black3" data-key="-9"></div>
+          <div class="key" data-key="-8">
+            <h3 class='keyboard white'>D</h3>
+          </div>
+          <div class="key" data-key="-7">
+            <h3 class='keyboard white'>F</h3>
+          </div>
+          <div class="key black black1" data-key="-6"></div>
+          <div class="key" data-key="-5">
+            <h3 class='keyboard white'>G</h3>
+          </div>
+          <div class="key black black2" data-key="-4"></div>
+          <div class="key" data-key="-3">
+            <h3 class='keyboard white'>H</h3>
+          </div>
+          <div class="key black black3" data-key="-2"></div>
+          <div class="key" data-key="-1">
+            <h3 class='keyboard white'>J</h3>
+          </div>
+          <div class="key" data-key="0">
+            <h3 class='keyboard white'>K</h3>
+          </div>
+          <div class="key black black1" data-key="1"></div>
+          <div class="key" data-key="2">
+            <h3 class='keyboard white'>L</h3>
+          </div>
+          <div class="key black black3" data-key="3"></div>
+          <div class="key" data-key="4"></div>
+          <div class="key" data-key="5"></div>
+          <div class="key black black1" data-key="6"></div>
+          <div class="key" data-key="7"></div>
+          <div class="key black black2" data-key="8"></div>
+          <div class="key" data-key="9"></div>
+          <div class="key black black3" data-key="10"></div>
+          <div class="key" data-key="11"></div>
+          <div class="key" data-key="12"></div>
+          <div class="key black black1" data-key="13"></div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>
