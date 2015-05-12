@@ -13,92 +13,100 @@ function envLockToggle(param){
   document.getElementById('env_2_'+param).disabled = !document.getElementById('env_2_'+param).disabled;
   document.getElementById('env_3_'+param).disabled = !document.getElementById('env_3_'+param).disabled;
 }
-function filterLock(param){
-  var val = document.getElementById('filter_1_'+param).value;        
-  document.getElementById('filter_2_'+param).value = val;
-  document.getElementById('filter_3_'+param).value = val;
-  document.getElementById('filter_2_'+param).value = val;
-  document.getElementById('filter_3_'+param).value = val;
+function filterLockToggle(param){
   document.getElementById('filter_2_'+param).disabled = !document.getElementById('filter_2_'+param).disabled;
   document.getElementById('filter_3_'+param).disabled = !document.getElementById('filter_3_'+param).disabled;
 }
+function setSelectIndex(elem, option){
+  for (var i=0; i<elem.options.length; i++){
+    if (elem.options[i].value === option){
+      elem.selectedIndex = i;
+      
+    }
+  }
+}
+function initListeners(){
+  document.getElementById('envLock').addEventListener('change',function(){
+    envLockToggle('attack');
+    envLockToggle('decay');
+    envLockToggle('sustain');
+    envLockToggle('release');
+  });
+    document.getElementById('filterLock').addEventListener('change',function(){
+    filterLockToggle('cutoff');
+    filterLockToggle('res');
+    filterLockToggle('filtertype');
+  });
+  document.getElementById('env_1_attack').addEventListener('input',function(){
+          if (document.getElementById('envLock').checked === true){
+            var val = +document.getElementById('env_1_attack').value;
+            document.getElementById('env_2_attack').value = val;
+            document.getElementById('env_3_attack').value = val;
+            document.getElementById('env_2_attack').value = val;
+            document.getElementById('env_3_attack').value = val;} else {return;}});
+            
+    document.getElementById('env_1_decay').addEventListener('input',function(){
+          if (document.getElementById('envLock').checked === true){
+            var val = +document.getElementById('env_1_decay').value;
+            document.getElementById('env_2_decay').value = val;
+            document.getElementById('env_3_decay').value = val;
+            document.getElementById('env_2_decay').value = val;
+            document.getElementById('env_3_decay').value = val;} else {return;}});
+          
+    document.getElementById('env_1_sustain').addEventListener('input',function(){
+          if (document.getElementById('envLock').checked === true){
+            var val = +document.getElementById('env_1_sustain').value;
+            document.getElementById('env_2_sustain').value = val;
+            document.getElementById('env_3_sustain').value = val;
+            document.getElementById('env_2_sustain').value = val;
+            document.getElementById('env_3_sustain').value = val;} else {return;}});
+            
+    document.getElementById('env_1_release').addEventListener('input',function(){
+          if (document.getElementById('envLock').checked === true){
+            var val = +document.getElementById('env_1_release').value;
+            document.getElementById('env_2_release').value = val;
+            document.getElementById('env_3_release').value = val;
+            document.getElementById('env_2_release').value = val;
+            document.getElementById('env_3_release').value = val;} else {return;}});
+            
+    document.getElementById('filter_1_cutoff').addEventListener('input',function(){
+          if (document.getElementById('filterLock').checked === true){
+            var val = +document.getElementById('filter_1_cutoff').value;
+            document.getElementById('filter_2_cutoff').value = val;
+            document.getElementById('filter_3_cutoff').value = val;
+            document.getElementById('filter_2_cutoff').value = val;
+            document.getElementById('filter_3_cutoff').value = val;} else {return;}});
+            
+    document.getElementById('filter_1_res').addEventListener('input',function(){
+          if (document.getElementById('filterLock').checked === true){
+            var val = +document.getElementById('filter_1_res').value;
+            document.getElementById('filter_2_res').value = val;
+            document.getElementById('filter_3_res').value = val;
+            document.getElementById('filter_2_res').value = val;
+            document.getElementById('filter_3_res').value = val;} else {return;}});
+            
+    document.getElementById('filter_1_filtertype').addEventListener('change',function(){
+
+          if (document.getElementById('filterLock').checked === true){
+            var val = document.getElementById('filter_1_filtertype').value;
+            setSelectIndex(document.getElementById('filter_2_filtertype'),val);
+            setSelectIndex(document.getElementById('filter_3_filtertype'),val);
+            setSelectIndex(document.getElementById('filter_2_filtertype'),val);
+            setSelectIndex(document.getElementById('filter_3_filtertype'),val);} else {return;}});
+}
 window.addEventListener('load', audioInit, false);
+
 function audioInit() {
   try{
     window.AudioContext = window.AudioContext || window.webkitAudioContext; //Set up the audio api
     context = new AudioContext();
     initKeys();
-    document.getElementById('envLock').addEventListener('change',function(){
-      if (document.getElementById('envLock').checked === true){
-        console.log('sssssssssss');
-        document.getElementById('env_1_attack').onChange = function(e){
-          console.log('sssss2222');
-            var val = +document.getElementById('env_1_'+e.currentTarget.id.slice(6)).value;
-            document.getElementById('env_2_'+param).value = val;
-            document.getElementById('env_3_'+param).value = val;
-            document.getElementById('env_2_'+param).value = val;
-            document.getElementById('env_3_'+param).value = val;
-        };
-        document.getElementById('env_1_decay').onChange = function(e){
-            var val = +document.getElementById('env_1_'+e.currentTarget.id.slice(6)).value;
-            document.getElementById('env_2_'+param).value = val;
-            document.getElementById('env_3_'+param).value = val;
-            document.getElementById('env_2_'+param).value = val;
-            document.getElementById('env_3_'+param).value = val;
-        };
-        document.getElementById('env_1_sustain').onChange = function(e){
-            var val = +document.getElementById('env_1_'+e.currentTarget.id.slice(6)).value;
-            document.getElementById('env_2_'+param).value = val;
-            document.getElementById('env_3_'+param).value = val;
-            document.getElementById('env_2_'+param).value = val;
-            document.getElementById('env_3_'+param).value = val;
-        };
-        document.getElementById('env_1_release').onChange = function(e){
-            var val = +document.getElementById('env_1_'+e.currentTarget.id.slice(6)).value;
-            document.getElementById('env_2_'+param).value = val;
-            document.getElementById('env_3_'+param).value = val;
-            document.getElementById('env_2_'+param).value = val;
-            document.getElementById('env_3_'+param).value = val;
-        };
-        envLockToggle('attack');
-        envLockToggle('decay');
-        envLockToggle('sustain');
-        envLockToggle('release');
-                                                                  
-      } else {
-        document.getElementById('env_1_attack').onChange = null;
-        document.getElementById('env_1_decay').onChange = null;
-        document.getElementById('env_1_sustain').onChange = null;
-        document.getElementById('env_1_release').onChange = null;
-        envLockToggle('attack');
-        envLockToggle('decay');
-        envLockToggle('sustain');
-        envLockToggle('release');
-      }
-    });
-    document.getElementById('filterLock').addEventListener('change',function(){
-      if (document.getElementById('filterLock').checked === true){
-        document.getElementById('filter_1_cutoff').addEventListener('input',
-                                                                  filterLock('cutoff'));
-        document.getElementById('filter_1_res').addEventListener('input',
-                                                                filterLock('res'));
-        document.getElementById('filter_1_filtertype').addEventListener('change',
-                                                                  filterLock('filtertype'));
-  
-      } else {
-       document.getElementById('filter_1_cutoff').removeEventListener('input',
-                                                                  filterLock('cutoff'));
-        document.getElementById('filter_1_res').removeEventListener('input',
-                                                                filterLock('res'));
-        document.getElementById('filter_1_filtertype').removeEventListener('change',
-                                                                  filterLock('filtertype'));
-      }});
-  }
+    initListeners();
+    }
   catch(e){
     alert('Audio API unsupported');
   }
 }
-
 function oscCreate(oscType, oscFreq, oscVol) {
   var osc;
   var oscGain;
