@@ -25,6 +25,56 @@ function setSelectIndex(elem, option){
     }
   }
 }
+function addPreset(){
+  try{
+  var presetsObject;
+  var preset = {'master':document.getElementById('master').value,
+                'envLock':document.getElementById('envLock').value,
+                'filterLock':document.getElementById('filterLock').value,
+                'osc_1':document.getElementById('osc_1').value,
+                'osc_1_type':document.getElementById('osc_1_type').value,
+                'osc_1_detune':document.getElementById('osc_1_detune').value,
+                'env_1_attack':document.getElementById('env_1_attack').value,
+                'env_1_decay':document.getElementById('env_1_decay').value,
+                'env_1_sustain':document.getElementById('env_1_sustain').value,
+                'env_1_release':document.getElementById('env_1_release').value,
+                'filter_1_cutoff':document.getElementById('filter_1_cutoff').value,
+                'filter_1_res':document.getElementById('filter_1_res').value,
+                'filter_1_filtertype':document.getElementById('filter_1_filtertype').value,
+                'osc_2':document.getElementById('osc_2').value,
+                'osc_2_type':document.getElementById('osc_2_type').value,
+                'osc_2_detune':document.getElementById('osc_2_detune').value,
+                'env_2_attack':document.getElementById('env_2_attack').value,
+                'env_2_decay':document.getElementById('env_2_decay').value,
+                'env_2_sustain':document.getElementById('env_2_sustain').value,
+                'env_2_release':document.getElementById('env_2_release').value,
+                'filter_2_cutoff':document.getElementById('filter_2_cutoff').value,
+                'filter_2_res':document.getElementById('filter_2_res').value,
+                'filter_2_filtertype':document.getElementById('filter_2_filtertype').value,
+                'osc_3':document.getElementById('osc_3').value,
+                'osc_3_type':document.getElementById('osc_3_type').value,
+                'osc_3_detune':document.getElementById('osc_3_detune').value,
+                'env_3_attack':document.getElementById('env_3_attack').value,
+                'env_3_decay':document.getElementById('env_3_decay').value,
+                'env_3_sustain':document.getElementById('env_3_sustain').value,
+                'env_3_release':document.getElementById('env_3_release').value,
+                'filter_3_cutoff':document.getElementById('filter_3_cutoff').value,
+                'filter_3_res':document.getElementById('filter_3_res').value,
+                'filter_3_filtertype':document.getElementById('filter_3_filtertype').value};
+  if(localStorage.getItem('presets')){
+    presetsObject = JSON.parse(localStorage.getItem('presets'));
+  } else {
+    presetsObject = {};
+  }
+  var presetName = document.prompt('Please enter a name for this preset');
+  presetsObject[presetName] = preset;
+  localStorage.setItem('presets',JSON.stringify(presetsObject));
+  alert('Preset saved');
+  } catch(e){
+    alert('Preset could not be saved');
+  }
+}
+
 function initListeners(){
   document.getElementById('envLock').addEventListener('change',function(){
     envLockToggle('attack');
