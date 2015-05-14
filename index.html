@@ -303,6 +303,11 @@
               <option value="-1">-1</option>
                 <option value="-2">-2</option>
               </select>
+              <br>
+              <label for='presets'>Presets</label>
+              <select id=presets onchange="loadPreset(this.value)">
+              </select>
+              <button type="button" onclick="addPreset()">Save As Preset</button>
             </div>
         <div class="col-md-11 column">
            <div id="piano">

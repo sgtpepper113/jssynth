@@ -1,14 +1,5 @@
 var context;
 var active = {};
-function envLock(param){
-  var val = document.getElementById('env_1_'+param).value;
-  document.getElementById('env_2_'+param).value = val;
-  document.getElementById('env_3_'+param).value = val;
-  document.getElementById('env_2_'+param).value = val;
-  document.getElementById('env_3_'+param).value = val;
-  document.getElementById('env_2_'+param).disabled = !document.getElementById('env_2_'+param).disabled;
-  document.getElementById('env_3_'+param).disabled = !document.getElementById('env_3_'+param).disabled;
-}
 function envLockToggle(param){
   document.getElementById('env_2_'+param).disabled = !document.getElementById('env_2_'+param).disabled;
   document.getElementById('env_3_'+param).disabled = !document.getElementById('env_3_'+param).disabled;
@@ -23,6 +14,18 @@ function setSelectIndex(elem, option){
       elem.selectedIndex = i;
       
     }
+  }
+}
+function loadPreset(presetName){
+  try{
+    console.log(presetName);
+    var preset = JSON.parse(localStorage.getItem('presets'));
+    Object.keys(preset[presetName]).forEach(function(x){
+      console.log(x);
+      document.getElementById(x).value = preset[presetName][x];
+    });
+  } catch(e){
+    alert('Preset could not be loaded.');
   }
 }
 function addPreset(){
@@ -66,15 +69,31 @@ function addPreset(){
   } else {
     presetsObject = {};
   }
-  var presetName = document.prompt('Please enter a name for this preset');
+  var presetName = prompt('Please enter a name for this preset');
   presetsObject[presetName] = preset;
+
   localStorage.setItem('presets',JSON.stringify(presetsObject));
   alert('Preset saved');
+  updatePresetList();
   } catch(e){
     alert('Preset could not be saved');
   }
 }
-
+function updatePresetList(){
+  try{
+  var presets = JSON.parse(localStorage.getItem('presets'));
+  var list = document.getElementById('presets');
+  var i = list.options.length - 1;
+  for (i;i>=0;i--){
+    list.remove(i);
+  }
+    Object.keys(presets).forEach(function(x){
+      list.options[list.options.length] = new Option(x,x);
+    });
+  } catch(e){
+    alert('Presets could not be loaded.');
+  }
+}
 function initListeners(){
   document.getElementById('envLock').addEventListener('change',function(){
     envLockToggle('attack');
@@ -152,6 +171,7 @@ function audioInit() {
     context = new AudioContext();
     initKeys();
     initListeners();
+    updatePresetList();
     }
   catch(e){
     alert('Audio API unsupported');
@@ -289,7 +309,6 @@ function initKeys(octaves) {
           x.filter.disconnect();
           x = null;
         },x.adsr.adsr['release']+100);
-        
         });
       });
   });
