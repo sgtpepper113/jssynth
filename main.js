@@ -18,14 +18,20 @@ function setSelectIndex(elem, option){
 }
 function loadPreset(presetName){
   try{
-    console.log(presetName);
     var preset = JSON.parse(localStorage.getItem('presets'));
     Object.keys(preset[presetName]).forEach(function(x){
-      console.log(x);
       document.getElementById(x).value = preset[presetName][x];
     });
   } catch(e){
     alert('Preset could not be loaded.');
+  }
+}
+function clearAllPresets(){
+  try{
+    if (confirm('Delete all saved presets?')){
+    localStorage.removeItem('presets');}
+  } catch(e){
+    alert('Presets could not be delted.');
   }
 }
 function addPreset(){
