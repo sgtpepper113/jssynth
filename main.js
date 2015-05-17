@@ -274,7 +274,7 @@ function initKeys(octaves) {
   var noteoffset = octaves * 12 || 0;
   for(var i=0;i<keycontainer.length;i++){
     keycontainer[i].setAttribute('data-frequency',
-                                 Math.pow(Math.pow(2,1/12),i + noteoffset)*440);
+                                 Math.pow(Math.pow(2,1/12),i + noteoffset) * 261.625565);
     keycontainer[i].setAttribute('data-keycode',keychars.charCodeAt(i) || 0);
     keycontainer[i].addEventListener('mousedown',function(){
       var frequency = parseFloat(this.getAttribute('data-frequency'));
