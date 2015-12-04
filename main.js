@@ -177,6 +177,7 @@ function audioInit() {
     window.AudioContext = window.AudioContext || window.webkitAudioContext; //Set up the audio api
     context = new AudioContext();
     mix = context.createChannelMerger(10);
+    mix.ccount = 0;
     var compress = context.createDynamicsCompressor();
     mix.connect(compress);
     compress.connect(context.destination);
@@ -225,7 +226,8 @@ function filterCreate(filterType, cutoff, resonance){
   filter.type = filterType || 'lowpass';
   filter.frequency.value = cutoff || 7000;
   filter.Q.value = resonance || 1;
-  filter.connect(mix, mix.numberOfInputs);
+  mix.ccount++;
+  filter.connect(mix, mix.ccount);
   return filter;
 }
 
@@ -318,6 +320,7 @@ function initKeys(octaves) {
           x.gainNode.disconnect();
           x.adsr.disconnect();
           x.filter.disconnect();
+          mix.ccount--;
           x = null;
         },x.adsr.adsr['release']+100);
         });
