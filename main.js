@@ -1,4 +1,5 @@
 var context;
+var mix;
 var active = {};
 function envLockToggle(param){
   document.getElementById('env_2_'+param).disabled = !document.getElementById('env_2_'+param).disabled;
@@ -175,6 +176,10 @@ function audioInit() {
   try{
     window.AudioContext = window.AudioContext || window.webkitAudioContext; //Set up the audio api
     context = new AudioContext();
+    mix = context.createChannelMerger(10);
+    var compress = context.createDynamicsCompressor();
+    mix.connect(compress);
+    compress.connect(context.destination);
     initKeys();
     initListeners();
     updatePresetList();
@@ -220,7 +225,7 @@ function filterCreate(filterType, cutoff, resonance){
   filter.type = filterType || 'lowpass';
   filter.frequency.value = cutoff || 7000;
   filter.Q.value = resonance || 1;
-  filter.connect(context.destination);
+  filter.connect(mix, mix.numberOfInputs);
   return filter;
 }
 
