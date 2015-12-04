@@ -226,8 +226,8 @@ function filterCreate(filterType, cutoff, resonance){
   filter.type = filterType || 'lowpass';
   filter.frequency.value = cutoff || 7000;
   filter.Q.value = resonance || 1;
-  mix.ccount++;
-  filter.connect(mix, mix.ccount);
+  mix.ccount = (mix.ccount + 1) > 9 ? 9 : mix.ccount + 1; 
+  filter.connect(mix, 0, mix.ccount);
   return filter;
 }
 
