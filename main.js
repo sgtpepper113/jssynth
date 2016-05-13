@@ -26,6 +26,46 @@ function loadPreset(presetName){
     alert('Preset could not be loaded.');
   }
 }
+function loadDefault(){
+  var preset = {
+		"master": "0.15",
+		"envLock": "0",
+		"filterLock": "0",
+		"osc_1": "0.5",
+		"osc_1_type": "sawtooth",
+		"osc_1_detune": "2.1",
+		"env_1_attack": "1",
+		"env_1_decay": "446.6",
+		"env_1_sustain": "0.46",
+		"env_1_release": "6586",
+		"filter_1_cutoff": "1985",
+		"filter_1_res": "4.51",
+		"filter_1_filtertype": "lowpass",
+		"osc_2": "0.5",
+		"osc_2_type": "sine",
+		"osc_2_detune": "0",
+		"env_2_attack": "1",
+		"env_2_decay": "446.6",
+		"env_2_sustain": "0.46",
+		"env_2_release": "6586",
+		"filter_2_cutoff": "767",
+		"filter_2_res": "4.51",
+		"filter_2_filtertype": "lowpass",
+		"osc_3": "0.5",
+		"osc_3_type": "sine",
+		"osc_3_detune": "-2.7",
+		"env_3_attack": "1",
+		"env_3_decay": "446.6",
+		"env_3_sustain": "0.46",
+		"env_3_release": "6586",
+		"filter_3_cutoff": "1042",
+		"filter_3_res": "4.51",
+		"filter_3_filtertype": "lowpass"
+	}
+	Object.keys(preset).forEach(function(x){
+      document.getElementById(x).value = preset[x];
+    });
+}
 function clearAllPresets(){
   try{
     if (confirm('Delete all saved presets?')){
@@ -178,6 +218,7 @@ function audioInit() {
     initKeys();
     initListeners();
     updatePresetList();
+    loadDefault();
     }
   catch(e){
     alert('Audio API unsupported');
