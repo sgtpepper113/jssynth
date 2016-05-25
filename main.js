@@ -23,7 +23,7 @@ function loadPreset(presetName){
       document.getElementById(x).value = preset[presetName][x];
     });
   } catch(e){
-    alert('Preset could not be loaded.');
+    //alert('Preset could not be loaded.');
   }
 }
 function loadDefault(){
