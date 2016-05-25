@@ -116,6 +116,9 @@ function addPreset(){
     presetsObject = {};
   }
   var presetName = prompt('Please enter a name for this preset');
+  if(presetName === null){
+  	return;
+  }
   presetsObject[presetName] = preset;
 
   localStorage.setItem('presets',JSON.stringify(presetsObject));
