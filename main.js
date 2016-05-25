@@ -23,7 +23,7 @@ function loadPreset(presetName){
       document.getElementById(x).value = preset[presetName][x];
     });
   } catch(e){
-    //alert('Preset could not be loaded.');
+    alert('Preset could not be loaded.');
   }
 }
 function loadDefault(){
@@ -71,7 +71,7 @@ function clearAllPresets(){
     if (confirm('Delete all saved presets?')){
     localStorage.removeItem('presets');}
   } catch(e){
-    alert('Presets could not be delted.');
+    alert('Presets could not be deleted.');
   }
 }
 function addPreset(){
@@ -137,7 +137,7 @@ function updatePresetList(){
       list.options[list.options.length] = new Option(x,x);
     });
   } catch(e){
-    alert('Presets could not be loaded.');
+    //alert('Presets could not be loaded.');
   }
 }
 function initListeners(){
